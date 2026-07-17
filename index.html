@@ -18,20 +18,19 @@
             margin-bottom: 20px;
         }
 
-        /* Justert boks for å tillate flere PDF-er etter hverandre */
+        /* Flexbox-oppsett for å stable PDF-ene med en jevn avstand */
         .pdf-fullvisning {
             max-width: 700px;
             width: 100%;
             margin: 0 auto 40px auto;
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Gir en jevn og fin 20px luke mellom PDF-ene i stedet for det store tomrommet */
+            gap: 20px; 
         }
 
-        /* Vi bruker iframe og fjerner standardrammen til nettleseren */
+        /* Standardinnstillinger for iframe */
         .pdf-fullvisning iframe {
             width: 100%;
-            height: 1000px; /* Beholder høyden så du kan lese PDF-en godt, men fjerner luken mellom dem */
             border: none;
             display: block;
             background-color: transparent;
@@ -123,8 +122,12 @@
             .info-boks {
                 padding: 15px;
             }
-            .pdf-fullvisning iframe {
-                height: 750px; 
+            /* Mobil-tilpasning av høydene hvis skjermen er liten */
+            .pdf-fullvisning iframe.croppet {
+                height: 300px !important;
+            }
+            .pdf-fullvisning iframe.standard {
+                height: 750px !important;
             }
         }
     </style>
@@ -134,8 +137,11 @@
     <h1>Type 78</h1>
 
     <div class="pdf-fullvisning">
-        <iframe src="Test%20retning%2078.pdf"></iframe>
-        <iframe src="test2.pdf"></iframe>
+        <!-- 1. Den croppede PDF-en (juster 400px opp/ned om det trengs mer/mindre plass) -->
+        <iframe class="croppet" src="Test%20retning%2078.pdf" style="height: 400px;"></iframe>
+        
+        <!-- 2. Den vanlige A4 PDF-en beholder full høyde på 1000px -->
+        <iframe class="standard" src="test2.pdf" style="height: 1000px;"></iframe>
     </div>
 
     <div class="info-boks">
