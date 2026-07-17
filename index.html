@@ -18,18 +18,20 @@
             margin-bottom: 20px;
         }
 
-        /* Ren stil for PDF-visningen uten skygge eller boks */
+        /* Justert boks for å tillate flere PDF-er etter hverandre */
         .pdf-fullvisning {
             max-width: 700px;
             width: 100%;
             margin: 0 auto 40px auto;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Gir en jevn og fin 20px luke mellom PDF-ene i stedet for det store tomrommet */
         }
 
         /* Vi bruker iframe og fjerner standardrammen til nettleseren */
         .pdf-fullvisning iframe {
             width: 100%;
-            height: 1000px; /* Juster denne opp/ned hvis du får rullefelt inni */
+            height: 1000px; /* Beholder høyden så du kan lese PDF-en godt, men fjerner luken mellom dem */
             border: none;
             display: block;
             background-color: transparent;
@@ -132,9 +134,8 @@
     <h1>Type 78</h1>
 
     <div class="pdf-fullvisning">
-        <!-- Begge PDF-ene ligger nå her etter hverandre -->
         <iframe src="Test%20retning%2078.pdf"></iframe>
-        <iframe src="test2.pdf" style="margin-top: 20px;"></iframe>
+        <iframe src="test2.pdf"></iframe>
     </div>
 
     <div class="info-boks">
